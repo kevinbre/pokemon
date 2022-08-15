@@ -69,17 +69,20 @@ export default function Home() {
     const handleChange = (e) => {
      const newPokemon = e.target.value
      setPokemonInput(newPokemon)
+     setCaptured(null)
     }
 
    const handleSubmit = (e) => {
     e.preventDefault()
       setInitialPokemon(pokemonInput)
-      pokemonData() 
+      pokemonData()
+      setCaptured(null)
    }
 
    const pokemonFav = () => {
     const pokemonData = JSON.parse(localStorage.getItem('pokemonCaptured'))
     setFavoritePokemon(pokemonData)
+    setCaptured(null)
    }
 
    const nextPokemon = () => {
@@ -100,6 +103,7 @@ export default function Home() {
    const defaultPokemon = () => {
     setInitialPokemon(pokemon.name)
     localStorage.setItem('pokemon', pokemon.name);
+    setCaptured(null)
    }
 
    const pokeball = () => {
@@ -135,6 +139,7 @@ export default function Home() {
     const min = 1;
     const number = Math.floor(Math.random() * (max - min) + min);
     setRandomValue(number)
+    setCaptured(null)
    }
 
   return (
