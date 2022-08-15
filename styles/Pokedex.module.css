@@ -1,0 +1,95 @@
+.pokedexContainer {
+  max-width: 425px;
+  max-height: 637px;
+}
+
+.formContainer {
+  bottom: 50px;
+  margin-left: -20px;
+}
+
+.pokemonContainer {
+  top: 130px;
+  margin-left: -30px;
+}
+
+.pokeballs {
+  padding-top: 18px;
+  padding-right: 45px;
+  font-weight: 800;
+  display: flex;
+}
+
+.pokemonName {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-left:10px;
+}
+
+.pokemonNumber {
+  color: white;
+  padding-right: 60px;
+  position: relative;
+  top: -50px
+}
+
+.pokeballAnim {
+  animation: PokeballAnimation 4s cubic-bezier(0.93, 0.05, 0.9, 0.71);
+  transform: translate(-450%, -150%);
+}
+
+.logo {
+  padding: 50px 0;
+}
+
+@keyframes PokeballAnimation {
+ 0% {
+    transform: translate( 0%, 0%);
+ }
+
+ 10% {
+  transform: translate( -150%, -225%);
+ }
+
+ 14% {
+    transform: translate(-300%, -450%);
+ }
+
+ 20% {
+  transform: translate(-350%, -350%);
+ }
+
+ 24% {
+  transform: translate(-300%, -450%) ;
+ }
+
+ 32% {
+  transform: translate(-450%, -150%) rotate(25deg);
+ }
+
+ 39% {
+  transform: translate(-450%, -150%) rotate(-25deg);
+ }
+
+ 46% {
+  transform: translate(-450%, -150%) rotate(25deg);
+ }
+
+ 53% {
+  transform: translate(-450%, -150%) rotate(-25deg);
+ }
+
+ 60% {
+  transform: translate(-450%, -150%) rotate(25deg);
+ }
+
+ 67% {
+  transform: translate(-450%, -150%) rotate(-25deg);
+ }
+
+ 74% {
+  transform: translate(-450%, -150%);
+ }
+}
