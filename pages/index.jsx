@@ -198,7 +198,7 @@ export default function Home() {
               <input type="search" className={pokedex.search} onChange={handleChange} />
             </form>
             <button onClick={defaultPokemon}>Set a default</button>
-            <button onClick={pokeball} {...pokeballCount >= 100 ? {disabled:true} : ""}>Capture Pokemon</button>
+            <button onClick={pokeball} {...pokeballCount >= 15 ? {disabled:true} : throwPokeball === true ? {disabled:true} : "" }>Capture Pokemon</button>
             <div className="container d-flex justify-content-center">
             <button onClick={lastPokemon}>Last</button>
             <button onClick={nextPokemon}>Next</button>
