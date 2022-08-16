@@ -142,6 +142,7 @@ export default function Home() {
 
   return (
     <div>
+      {captured ? toast.success(`Capturaste a ${pokemon.name}!`, {theme: "dark"}) : !captured && captured !== null ? toast.error(`${pokemon.name} escapó`, {theme: "dark"}) : ""}
       <Head>
         <title>Pokedex</title>
         <meta name="description" content="Pokedex game" />
@@ -173,7 +174,6 @@ export default function Home() {
               <div className={`${pokedex.pokemonName} d-flex justify-content-center`}>
                 <span className={pokedex.name}>{pokemon.name}</span>
               </div>
-              {captured ? toast.success(`Capturaste a ${pokemon.name}!`, {theme: "dark"}) : !captured && captured !== null ? toast.error(`${pokemon.name} escapó`, {theme: "dark"}) : ""}
               {favoritePokemon.map((pokemon, index) => {
               <div className='container d-flex position-absolute'> 
                 <h1 key={index}>{pokemon.name}</h1>
