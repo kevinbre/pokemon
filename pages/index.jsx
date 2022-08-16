@@ -173,9 +173,7 @@ export default function Home() {
               <div className={`${pokedex.pokemonName} d-flex justify-content-center`}>
                 <span className={pokedex.name}>{pokemon.name}</span>
               </div>
-              <div className={`${pokedex.pokemonName} d-flex justify-content-center`}>
               {captured ? toast.success(`Capturaste a ${pokemon.name}!`, {theme: "dark"}) : !captured && captured !== null ? toast.error(`${pokemon.name} escapó`, {theme: "dark"}) : ""}
-              </div>
               {favoritePokemon.map((pokemon, index) => {
               <div className='container d-flex position-absolute'> 
                 <h1 key={index}>{pokemon.name}</h1>
@@ -201,7 +199,6 @@ export default function Home() {
         </div>
       </div>
       <div>
-       
       </div>
     </div>  
   )
