@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'  
 import pokedex from '../styles/Pokedex.module.css'
 import axios from "axios";
@@ -14,7 +15,6 @@ export default function Home() {
   const [pokeballCount, setPokeballCount] = useState(0)
   const [error, setError] = useState(false)
   const [throwPokeball, setThrowPokeball] = useState(false)
-  const [captured, setCaptured] = useState(null)
   const [randomValue, setRandomValue] = useState(1)
   const [favoritePokemon, setFavoritePokemon] = useState([])
 
@@ -67,26 +67,20 @@ export default function Home() {
     const handleChange = (e) => {
      const newPokemon = e.target.value.toLowerCase()
      setPokemonInput(newPokemon)
-     setCaptured(null)
+ 
     }
 
    const handleSubmit = (e) => {
     e.preventDefault()
       setInitialPokemon(pokemonInput)
-      setCaptured(null)
+  
       e.target.reset()
    }
 
-   const pokemonFav = () => {
-    const pokemonData = JSON.parse(localStorage.getItem('pokemonCaptured'))
-    setFavoritePokemon(pokemonData)
-    setCaptured(null)
-   }
-   console.log(favoritePokemon)
    const nextPokemon = () => {
       pokemon.id += 1
       pokemonId()
-      setCaptured(null)
+ 
    }
 
 
@@ -94,25 +88,27 @@ export default function Home() {
     if(pokemon.id > 1) {
       pokemon.id -= 1
       pokemonId()
-      setCaptured(null)
+
     }
    }
 
    const defaultPokemon = () => {
     setInitialPokemon(pokemon.name)
     localStorage.setItem('pokemon', pokemon.name);
-    setCaptured(null)
+  
    }
 
    const pokeball = () => {
     capturePokemon()
     setPokeballCount(pokeballCount + 1)
     setThrowPokeball(true)
-    setCaptured(null)
+
 
     setTimeout(() => {
       if(randomValue === pokemon.captureValue) {
-        setCaptured(true)
+
+        toast.success(`Capturaste a ${pokemon.name}!`, {theme: "dark"})
+
         const pokemonData = JSON.parse(localStorage.getItem('pokemonCaptured'))
         const newPokemonData = {id: pokemon.id, name: pokemon.name, image: pokemon.image}
         if(pokemonData !== null) {
@@ -122,14 +118,12 @@ export default function Home() {
         }
         
       } else {
-        setCaptured(false)
+        toast.error(`${pokemon.name} escapó`, {theme: "dark"})
+    
       }
       setThrowPokeball(false)
     }, 3000)
 
-    setTimeout(() => {
-      setCaptured(null)
-    }, 2000)
    }
 
    const capturePokemon = () => {
@@ -137,12 +131,10 @@ export default function Home() {
     const min = 1;
     const number = Math.floor(Math.random() * (max - min) + min);
     setRandomValue(number)
-    setCaptured(null)
    }
 
   return (
     <div>
-      {captured ? toast.success(`Capturaste a ${pokemon.name}!`, {theme: "dark"}) : !captured && captured !== null ? toast.error(`${pokemon.name} escapó`, {theme: "dark"}) : ""}
       <Head>
         <title>Pokedex</title>
         <meta name="description" content="Pokedex game" />
@@ -192,7 +184,7 @@ export default function Home() {
             <div className="container d-flex justify-content-center">
               <button onClick={lastPokemon}>Last</button>
               <button onClick={nextPokemon}>Next</button>
-              <button onClick={pokemonFav}>My pokemons</button>
+              <Link href="/favourites">My pokemons</Link>
             </div>
           </div>
         </div>
