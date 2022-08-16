@@ -34,17 +34,15 @@ export default function Home() {
         setError(false)
       }catch(error) {
         if(error) {
-          setError(true)
+          toast.warning(`El pokemon no existe`, {theme: "dark"})
         }
       }
     } 
     
     const pokemonId = async () => {
-    const max = 5;
+    const max = 3;
     const min = 1;
     const number = Math.floor(Math.random() * (max - min) + min);
-    console.log(number)
-    console.log(pokemon.captureValue)
       const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`);
       setPokemon({
         id: response.data.id,
@@ -67,7 +65,7 @@ export default function Home() {
     }, [])
 
     const handleChange = (e) => {
-     const newPokemon = e.target.value
+     const newPokemon = e.target.value.toLowerCase()
      setPokemonInput(newPokemon)
      setCaptured(null)
     }
@@ -75,8 +73,8 @@ export default function Home() {
    const handleSubmit = (e) => {
     e.preventDefault()
       setInitialPokemon(pokemonInput)
-      pokemonData()
       setCaptured(null)
+      e.target.reset()
    }
 
    const pokemonFav = () => {
@@ -84,7 +82,7 @@ export default function Home() {
     setFavoritePokemon(pokemonData)
     setCaptured(null)
    }
-
+   console.log(favoritePokemon)
    const nextPokemon = () => {
       pokemon.id += 1
       pokemonId()
@@ -185,13 +183,7 @@ export default function Home() {
               })}
             </div> 
             : 
-            <>
-              {/* <div className={pokedex.visor}>
-              </div>
-              <span className={pokedex.name}>No data</span> */}
-
-            </>
-                   
+            null       
         }
            <div className={`${pokedex.pokedexContainer, pokedex.formContainer} container position-absolute`}>
             <form onSubmit={handleSubmit}>
@@ -200,10 +192,9 @@ export default function Home() {
             <button onClick={defaultPokemon}>Set a default</button>
             <button onClick={pokeball} {...pokeballCount >= 15 ? {disabled:true} : throwPokeball === true ? {disabled:true} : "" }>Capture Pokemon</button>
             <div className="container d-flex justify-content-center">
-            <button onClick={lastPokemon}>Last</button>
-            <button onClick={nextPokemon}>Next</button>
-            <button onClick={pokemonFav}>My favorites</button>
-            
+              <button onClick={lastPokemon}>Last</button>
+              <button onClick={nextPokemon}>Next</button>
+              <button onClick={pokemonFav}>My pokemons</button>
             </div>
           </div>
         </div>
