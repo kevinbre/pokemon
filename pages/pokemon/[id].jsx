@@ -18,6 +18,7 @@ function Pokemon() {
 
   const router = useRouter();
   const pokemonId = Number(router.query.id);
+
   const pokemonInfo = async () => {
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
@@ -44,8 +45,9 @@ function Pokemon() {
   }, [myPokemon.type]);
 
   useEffect(() => {
-    if (!router.isReady) return;
     pokemonInfo();
+    if (!router.isReady) return;
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
   useEffect(() => {

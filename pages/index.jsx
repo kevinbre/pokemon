@@ -19,6 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     pokemonData();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialPokemon]);
 
   const pokemonData = async () => {
