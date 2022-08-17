@@ -10,7 +10,7 @@ import {
   Container,
 } from "react-bootstrap";
 import Image from "next/image";
-import pokemonType from "../mockup";
+import { pokemonType } from "../mockup";
 
 function Pokemon() {
   const [myPokemon, setMyPokemon] = useState({});
