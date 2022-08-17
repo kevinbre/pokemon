@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import axios from "axios"
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Col, Button, Row } from "react-bootstrap";
 import Image from 'next/image'
 import Link from 'next/link' 
 
@@ -25,20 +25,35 @@ useEffect(()=>{
   return (
     <>
     {!myPokemon ? "cargando..." :  
-      <Card style={{ width: '18rem' }}>
+      <Card>
         <Card.Body>
           <Card.Title>{myPokemon.name}</Card.Title>
-          <Image src={pokeImg} width={50} height={50} alt={myPokemon.name}/>
-          <Card.Subtitle className="mb-2 text-muted">{myPokemon.name}</Card.Subtitle>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the cards content.
-          </Card.Text>
+          <Row>
+            <Image src={pokeImg} width={50} height={50} alt={myPokemon.name}/>
+            {}
+          </Row>
           <Link href="/captured">Volver</Link>
           <Link href="/">Capturar otro</Link>
         </Card.Body>
       </Card>
     }
+      
+  
+     
+      <Col md={3} className="d-flex justify-content-center">
+        <Card style={{ width: '12rem', height: '13rem', border: 'none' }}>
+        <Card.Body className="d-flex flex-column align-items-center bg-dark rounded">
+          <Card.Title className="text-light pb-3"></Card.Title>
+          <Button variant="light" className="mt-4">
+              Pokemon info 
+          </Button>
+        </Card.Body>
+       
+      </Card>
+      </Col>
+   
+     
+
       
     </>
   )
