@@ -74,12 +74,12 @@ function Pokemon() {
           <Card.Body className="text-light text-capitalize d-flex flex-column align-items-center">
             <Card.Title className="text-uppercase">{myPokemon.name}</Card.Title>
             <Row className="d-flex justify-content-center mt-4">
-              <Image
+              {/* <Image
                 src={myPokemon.image}
                 width={100}
                 height={100}
                 alt={myPokemon.name}
-              />
+              /> */}
               <Row className="d-flex text-center mt-4">
                 <Card.Title style={{ fontSize: 24, fontWeight: 700 }}>
                   Tipo
