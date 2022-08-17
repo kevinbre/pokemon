@@ -17,7 +17,7 @@ import Veneno from "../../src/images/Veneno.png";
 import Volador from "../../src/images/Volador.png";
 import Fuego from "../../src/images/Fuego.png";
 
-export const pokemonType = [
+const pokemonType = [
   {
     image: Tierra,
     type: "ground",
@@ -91,3 +91,5 @@ export const pokemonType = [
     type: "fire",
   },
 ];
+
+export default pokemonType;
