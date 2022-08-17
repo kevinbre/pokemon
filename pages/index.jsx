@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'  
+import Link from 'next/link' 
 import pokedex from '../styles/Pokedex.module.css'
 import axios from "axios";
 import { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
+import { Button, InputGroup, Form } from "react-bootstrap";
 
 
 export default function Home() {
@@ -17,6 +17,10 @@ export default function Home() {
   const [throwPokeball, setThrowPokeball] = useState(false)
   const [randomValue, setRandomValue] = useState(1)
   const [favoritePokemon, setFavoritePokemon] = useState([])
+
+  useEffect(() => {
+    pokemonData();
+  }, [initialPokemon])
 
     const pokemonData = async () => {
     const max = 5;
@@ -32,7 +36,7 @@ export default function Home() {
           captureValue: number
         })
         setError(false)
-      }catch(error) {
+      } catch(error) {
         if(error) {
           toast.warning(`El pokemon no existe`, {theme: "dark"})
         }
@@ -51,11 +55,6 @@ export default function Home() {
         captureValue: number
       })
     }
-    
-
-    useEffect(() => {
-      pokemonData();
-    }, [initialPokemon])
 
     useEffect(() => {
       const favPokemon = localStorage.getItem('pokemon');
@@ -64,74 +63,65 @@ export default function Home() {
       }
     }, [])
 
-    const handleChange = (e) => {
-     const newPokemon = e.target.value.toLowerCase()
-     setPokemonInput(newPokemon)
+  const handleChange = (e) => {
+    const newPokemon = e.target.value.toLowerCase()
+    setPokemonInput(newPokemon)
  
-    }
+  }
 
-   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-      setInitialPokemon(pokemonInput)
-  
-      e.target.reset()
-   }
+    setInitialPokemon(pokemonInput)
+    e.target.reset()
+  }
 
-   const nextPokemon = () => {
-      pokemon.id += 1
-      pokemonId()
- 
-   }
+  const nextPokemon = () => {
+    pokemon.id += 1
+    pokemonId()
+  }
 
 
-   const lastPokemon = () => {
+  const lastPokemon = () => {
     if(pokemon.id > 1) {
       pokemon.id -= 1
       pokemonId()
-
     }
-   }
+  }
 
-   const defaultPokemon = () => {
+  const defaultPokemon = () => {
     setInitialPokemon(pokemon.name)
     localStorage.setItem('pokemon', pokemon.name);
-  
-   }
+  }
 
    const pokeball = () => {
     capturePokemon()
     setPokeballCount(pokeballCount + 1)
     setThrowPokeball(true)
 
-
     setTimeout(() => {
       if(randomValue === pokemon.captureValue) {
-
-        toast.success(`Capturaste a ${pokemon.name}!`, {theme: "dark"})
-
         const pokemonData = JSON.parse(localStorage.getItem('pokemonCaptured'))
         const newPokemonData = {id: pokemon.id, name: pokemon.name, image: pokemon.image}
+        toast.success(`Capturaste a ${pokemon.name}!`, {theme: "dark"})
+
         if(pokemonData !== null) {
           localStorage.setItem('pokemonCaptured', JSON.stringify([...pokemonData, newPokemonData]))
         } else {
           localStorage.setItem('pokemonCaptured', JSON.stringify([newPokemonData]))
         }
-        
       } else {
         toast.error(`${pokemon.name} escapó`, {theme: "dark"})
-    
       }
       setThrowPokeball(false)
-    }, 3000)
-
+    }, 5000)
    }
 
-   const capturePokemon = () => {
+  const capturePokemon = () => {
     const max = 5;
     const min = 1;
     const number = Math.floor(Math.random() * (max - min) + min);
     setRandomValue(number)
-   }
+  }
 
   return (
     <div>
@@ -173,25 +163,23 @@ export default function Home() {
               })}
             </div> 
             : 
-            null       
-        }
-           <div className={`${pokedex.pokedexContainer, pokedex.formContainer} container position-absolute`}>
+            null
+            }
+          <div className={`${pokedex.pokedexContainer, pokedex.formContainer} container position-absolute`}>
             <form onSubmit={handleSubmit}>
-              <input type="search" className={pokedex.search} onChange={handleChange} />
+              <input type="search" className={pokedex.search} onChange={handleChange} placeholder="Buscar pokemon"/>
             </form>
-            <button onClick={defaultPokemon}>Set a default</button>
-            <button onClick={pokeball} {...pokeballCount >= 15 ? {disabled:true} : throwPokeball === true ? {disabled:true} : "" }>Capture Pokemon</button>
+            <Button onClick={defaultPokemon} variant="dark" className="m-1">Set a default</Button>
+            <Button onClick={pokeball} {...pokeballCount >= 15 ? {disabled:true} : throwPokeball === true ? {disabled:true} : "" } variant="dark" className="m-1">Capture Pokemon</Button>
             <div className="container d-flex justify-content-center">
-              <button onClick={lastPokemon}>Last</button>
-              <button onClick={nextPokemon}>Next</button>
-              <Link href="/favourites">My pokemons</Link>
+              <Button variant="dark" className="m-1"  onClick={lastPokemon}>Last</Button>
+              <Button variant="dark" className="m-1" onClick={nextPokemon}>Next</Button>
+              <Button href="/captured" variant="dark" className="m-1">My pokemons</Button>
             </div>
           </div>
         </div>
-        </div>
       </div>
-      <div>
-      </div>
-    </div>  
+    </div>
+  </div>  
   )
 }
