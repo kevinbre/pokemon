@@ -10,7 +10,7 @@ import {
   Container,
 } from "react-bootstrap";
 import Image from "next/image";
-// import pokemonType from "../mockup";
+import pokemonType from "../../src/mockup/pokeMockUp";
 
 function Pokemon() {
   const [myPokemon, setMyPokemon] = useState({});
@@ -35,14 +35,14 @@ function Pokemon() {
     });
   };
 
-  // const images = useCallback(() => {
-  //   const pokeType = myPokemon.type;
-  //   {
-  //     pokemonType
-  //       .filter((pokemon) => pokemon.type === pokeType)
-  //       .map((filteredPokemon) => setTypeImage(filteredPokemon.image));
-  //   }
-  // }, [myPokemon.type]);
+  const images = useCallback(() => {
+    const pokeType = myPokemon.type;
+    {
+      pokemonType
+        .filter((pokemon) => pokemon.type === pokeType)
+        .map((filteredPokemon) => setTypeImage(filteredPokemon.image));
+    }
+  }, [myPokemon.type]);
 
   useEffect(() => {
     pokemonInfo();
@@ -50,9 +50,9 @@ function Pokemon() {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
-  // useEffect(() => {
-  //   images();
-  // }, [images]);
+  useEffect(() => {
+    images();
+  }, [images]);
 
   return (
     <Container
@@ -86,12 +86,12 @@ function Pokemon() {
                 </Card.Title>
                 <Col className="d-flex justify-content-center">
                   {myPokemon.type}
-                  {/* <Image
+                  <Image
                     src={typeImage}
                     width={25}
                     height={25}
                     alt={myPokemon.type}
-                  /> */}
+                  />
                 </Col>
               </Row>
               <Row className="d-flex justify-content-center flex-column">
