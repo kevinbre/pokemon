@@ -1,39 +1,35 @@
 .pokedexContainer {
   max-width: 425px;
   max-height: 637px;
-}
-
-.formContainer {
-  bottom: 50px;
-  margin-left: -20px;
-}
-
-.pokemonContainer {
-  top: 130px;
-  margin-left: -30px;
+  width: 100%;
+  height: 100%;
 }
 
 .pokeballs {
-  padding-top: 18px;
-  padding-right: 45px;
   font-weight: 800;
   display: flex;
+  padding: 7px 40px 0;
 }
 
 .pokemonName {
   font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
-  margin-top: 10px;
-  margin-left:10px;
+  padding: 10px 0 30px;
+
 }
 
 .pokemonNumber {
   color: white;
-  padding-right: 60px;
   position: relative;
-  top: -50px
+  width: 100%;
+  display: flex;
+  top: -80px;
+  left: -50px;
+  position: relative;
+  justify-content: flex-end;
 }
+
 
 .pokeballAnim {
   animation: PokeballAnimation 4s cubic-bezier(0.93, 0.05, 0.9, 0.71);
@@ -52,8 +48,14 @@
   animation: throwPokeball 5s ease-in
 }
 
-.logo {
-  padding: 50px 0;
+.pokemonContenedor {
+  max-width: 425px;
+  max-height: 637px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 41%;
+  padding-right: 40px;
 }
 
 @keyframes throwPokeball  {

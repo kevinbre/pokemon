@@ -5,7 +5,7 @@ import pokedex from "../styles/Pokedex.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Button, InputGroup, Form } from "react-bootstrap";
+import { Button, InputGroup, Form, Container } from "react-bootstrap";
 
 export default function Home() {
   const [initialPokemon, setInitialPokemon] = useState("pikachu");
@@ -23,7 +23,7 @@ export default function Home() {
   }, [initialPokemon]);
 
   const pokemonData = async () => {
-    const max = 5;
+    const max = 3;
     const min = 1;
     const number = Math.floor(Math.random() * (max - min) + min);
 
@@ -113,6 +113,7 @@ export default function Home() {
           image: pokemon.image,
         };
         toast.success(`Capturaste a ${pokemon.name}!`, { theme: "dark" });
+        nextPokemon();
 
         if (pokemonData !== null) {
           localStorage.setItem(
@@ -128,12 +129,15 @@ export default function Home() {
       } else {
         toast.error(`${pokemon.name} escapó`, { theme: "dark" });
       }
-      setThrowPokeball(false);
     }, 5000);
+
+    setTimeout(() => {
+      setThrowPokeball(false);
+    }, 5050);
   };
 
   const capturePokemon = () => {
-    const max = 5;
+    const max = 3;
     const min = 1;
     const number = Math.floor(Math.random() * (max - min) + min);
     setRandomValue(number);
@@ -146,43 +150,35 @@ export default function Home() {
         <meta name="description" content="Pokedex game" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container d-flex justify-content-center align-items-center flex-column position-relative">
-        <div className={pokedex.logo}>
+      <Container className="text-center position-relative">
+        <div className="p-5">
           <Image src="/pokemon_logo.png" alt="Logo" width={200} height={76} />
         </div>
-        <div className="container justify-content-center text-center d-flex position-relative">
-          <div
-            className={`${pokedex.pokedexContainer} container position-absolute`}
+        <Container className="d-flex justify-content-center ">
+          <Image src="/pokedex.png" alt="pokedex" width={425} height={647} />
+          <Container
+            className={`${pokedex.pokemonContenedor} d-block position-absolute pb-5`}
           >
-            <Image src="/pokedex.png" alt="pokedex" width={425} height={647} />
             {!error ? (
-              <div
-                className={`${
-                  (pokedex.pokedexContainer, pokedex.pokemonContainer)
-                } container position-absolute`}
-              >
-                <div
-                  className={`${pokedex.pokemonNumber} d-flex align-items-center justify-content-end`}
-                >
+              <>
+                <div className={`${pokedex.pokemonNumber}`}>
                   <h1>#{pokemon.id}</h1>
                 </div>
-                <div className="d-flex justify-content-center">
-                  {pokemon.image && (
-                    <Image
-                      className={
-                        (pokedex.pokemon,
-                        throwPokeball === true ? pokedex.throwPokeball : "")
-                      }
-                      src={pokemon.image}
-                      alt={pokemon.name}
-                      width={100}
-                      height={82}
-                    />
-                  )}
-                </div>
-                <div
-                  className={`${pokedex.pokeballs} container d-flex justify-content-end `}
-                >
+
+                {pokemon.image && (
+                  <Image
+                    className={
+                      (pokedex.pokemon,
+                      throwPokeball === true ? pokedex.throwPokeball : "")
+                    }
+                    src={pokemon.image}
+                    alt={pokemon.name}
+                    width={100}
+                    height={82}
+                  />
+                )}
+
+                <div className={`${pokedex.pokeballs} justify-content-end`}>
                   <span className={pokedex.pokeballs}>
                     <div className={throwPokeball ? pokedex.pokeballAnim : ""}>
                       <Image
@@ -196,22 +192,16 @@ export default function Home() {
                   </span>
                 </div>
                 <div
-                  className={`${pokedex.pokemonName} d-flex justify-content-center`}
+                  className={`${pokedex.pokemonName} justify-content-center`}
                 >
                   <span className={pokedex.name}>{pokemon.name}</span>
                 </div>
                 {favoritePokemon.map((pokemon, index) => {
-                  <div className="container d-flex position-absolute">
-                    <h1 key={index}>{pokemon.name}</h1>
-                  </div>;
+                  <h1 key={index}>{pokemon.name}</h1>;
                 })}
-              </div>
+              </>
             ) : null}
-            <div
-              className={`${
-                (pokedex.pokedexContainer, pokedex.formContainer)
-              } container position-absolute`}
-            >
+            <div className={`${pokedex.formContainer}`}>
               <form onSubmit={handleSubmit}>
                 <input
                   type="search"
@@ -253,13 +243,13 @@ export default function Home() {
                   Next
                 </Button>
                 <Button href="/captured" variant="dark" className="m-1">
-                  My pokemons
+                  Pokeinfo
                 </Button>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </Container>
+        </Container>
+      </Container>
     </div>
   );
 }
