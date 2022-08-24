@@ -1,78 +1,100 @@
 .pokedexContainer {
-  max-width: 425px;
-  max-height: 637px;
   width: 100%;
+  max-width: 425px;
   height: 100%;
+  max-height: 637px;
 }
 
 .pokeballs {
-  font-weight: 800;
   display: flex;
+
   padding: 7px 40px 0;
+
+  font-weight: 800;
 }
 
 .pokemonName {
+  padding: 10px 0 30px;
+
   font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 10px 0 30px;
-
 }
 
 .pokemonNumber {
-  color: white;
   position: relative;
-  width: 100%;
-  display: flex;
+  position: relative;
   top: -80px;
   left: -50px;
-  position: relative;
+
+  display: flex;
   justify-content: flex-end;
+
+  width: 100%;
+
+  color: #faccd9;
 }
 
+.search {
+  border: 2px solid #E57C98;
+  border-radius: 4px;
+  background-color: #D30B41;
+
+  color: white;
+  text-align: center;
+}
+
+.search::placeholder {
+  color: #F1B2C3;
+}
+
+.search:focus {
+  outline: 2px solid #F1B2C3;
+}
 
 .pokeballAnim {
-  animation: PokeballAnimation 4s cubic-bezier(0.93, 0.05, 0.9, 0.71);
+  animation: PokeballAnimation 4s cubic-bezier(.93, .05, .9, .71);
   transform: translate(-450%, -150%);
 }
 
 .noCaptured {
-  animation: noCaptured 0s cubic-bezier(0.93, 0.05, 0.9, 0.71);
+  animation: noCaptured 0s cubic-bezier(.93, .05, .9, .71);
 }
 
 .captured {
-  animation: captured 5s cubic-bezier(0.93, 0.05, 0.9, 0.71);
+  animation: captured 5s cubic-bezier(.93, .05, .9, .71);
 }
 
 .throwPokeball {
-  animation: throwPokeball 5s ease-in
+  animation: throwPokeball 5s ease-in;
 }
 
 .pokemonContenedor {
-  max-width: 425px;
-  max-height: 637px;
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 41%;
+
+  width: 100%;
+  max-width: 425px;
+  height: 100%;
+  max-height: 637px;
   padding-right: 40px;
 }
 
-@keyframes throwPokeball  {
+@keyframes throwPokeball {
   0% {
-    opacity: 100%
+    opacity: 100%;
   }
 
   20% {
-    opacity: 100%
+    opacity: 100%;
   }
 
   21% {
-    opacity: 0%
+    opacity: 0;
   }
 
   100% {
-    opacity: 0%;
+    opacity: 0;
   }
 }
 
@@ -93,51 +115,51 @@
 } */
 
 @keyframes PokeballAnimation {
- 0% {
+  0% {
     transform: translate( 0%, 0%);
- }
+  }
 
- 10% {
-  transform: translate( -150%, -225%);
- }
+  10% {
+    transform: translate( -150%, -225%);
+  }
 
- 14% {
+  14% {
     transform: translate(-300%, -450%);
- }
+  }
 
- 20% {
-  transform: translate(-350%, -350%);
- }
+  20% {
+    transform: translate(-350%, -350%);
+  }
 
- 24% {
-  transform: translate(-300%, -450%) ;
- }
+  24% {
+    transform: translate(-300%, -450%) ;
+  }
 
- 32% {
-  transform: translate(-450%, -150%) rotate(25deg);
- }
+  32% {
+    transform: translate(-450%, -150%) rotate(25deg);
+  }
 
- 39% {
-  transform: translate(-450%, -150%) rotate(-25deg);
- }
+  39% {
+    transform: translate(-450%, -150%) rotate(-25deg);
+  }
 
- 46% {
-  transform: translate(-450%, -150%) rotate(25deg);
- }
+  46% {
+    transform: translate(-450%, -150%) rotate(25deg);
+  }
 
- 53% {
-  transform: translate(-450%, -150%) rotate(-25deg);
- }
+  53% {
+    transform: translate(-450%, -150%) rotate(-25deg);
+  }
 
- 60% {
-  transform: translate(-450%, -150%) rotate(25deg);
- }
+  60% {
+    transform: translate(-450%, -150%) rotate(25deg);
+  }
 
- 67% {
-  transform: translate(-450%, -150%) rotate(-25deg);
- }
+  67% {
+    transform: translate(-450%, -150%) rotate(-25deg);
+  }
 
- 74% {
-  transform: translate(-450%, -150%);
- }
+  74% {
+    transform: translate(-450%, -150%);
+  }
 }

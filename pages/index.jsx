@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import pokedex from "../styles/Pokedex.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -207,7 +206,7 @@ export default function Home() {
                   type="search"
                   className={pokedex.search}
                   onChange={handleChange}
-                  placeholder="Buscar pokemon"
+                  placeholder="Search pokemon"
                 />
               </form>
               <Button onClick={defaultPokemon} variant="dark" className="m-1">
@@ -223,7 +222,7 @@ export default function Home() {
                 variant="dark"
                 className="m-1"
               >
-                Capture Pokemon
+                Capture
               </Button>
               <div className="container d-flex justify-content-center">
                 <Button
@@ -243,7 +242,7 @@ export default function Home() {
                   Next
                 </Button>
                 <Button href="/captured" variant="dark" className="m-1">
-                  Pokeinfo
+                  Captured
                 </Button>
               </div>
             </div>

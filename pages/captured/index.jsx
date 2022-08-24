@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Head from "next/head";
 import { Card, Container, Button, Row, Col, Text } from "react-bootstrap";
 
 function PokemonInfo() {
@@ -12,13 +13,18 @@ function PokemonInfo() {
 
   return (
     <>
+      <Head>
+        <title className="text-capitalize">My pokemons</title>
+        <meta name="description" content="Pokemon captured" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Container>
         <Card.Text
           className="d-flex justify-content-center mt-5"
           style={{ fontWeight: 800, fontSize: 26, color: "#8a78e8" }}
         >
           {" "}
-          Mis pokemon{" "}
+          My pokemons{" "}
         </Card.Text>
         <Row>
           {pokemonList?.map((pokemon, i) => (
@@ -50,7 +56,7 @@ function PokemonInfo() {
       <Container className="d-flex justify-content-center mt-5 mb-5">
         <Button href="/" variant="dark">
           {" "}
-          Capturar Pokemon{" "}
+          Home{" "}
         </Button>
       </Container>
     </>
